@@ -1,0 +1,1750 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/6/2026 9:49:06 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-I3N9QJ6"
+  DTS:CreatorName="DESKTOP-I3N9QJ6\akcel"
+  DTS:DTSID="{B068F3E7-9DD2-4D38-95C4-928EF6FBE54B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1045"
+  DTS:ObjectName="LoadPaymentTransactions"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{DE53C229-21F8-4CF7-8D60-5D1ADE06C58C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CM_CSV_PaymentTransactions]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{BADC205F-D643-497C-9B32-3EE46900C93A}"
+      DTS:ObjectName="CM_CSV_PaymentTransactions">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1045"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="G:\Projekty\PaymentFlow\data\input\sample_transactions.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="external_transaction_id"
+              DTS:DTSID="{1AF1C0A0-FCC3-4C55-BA6F-78B74754F444}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="terminal_code"
+              DTS:DTSID="{5A8BDED5-0A21-4ABB-9EAD-9F3034DB9716}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="transaction_type_code"
+              DTS:DTSID="{31F0955F-ED29-47C1-839B-2AC5FA7FEC5A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="status_code"
+              DTS:DTSID="{8908F642-5596-436D-B94C-B5C1120F31D3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="payment_method_code"
+              DTS:DTSID="{0DBFA514-BAD2-41A7-8598-EAA7EA5951B7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="currency_code"
+              DTS:DTSID="{3D49BD6A-5934-4228-8552-BCD2826816EB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="amount"
+              DTS:DTSID="{E79C7235-399B-40C7-8AB5-E3B5B8E66E31}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="occurred_at_utc"
+              DTS:DTSID="{87E9EF4D-58FB-4B91-99A4-ABB6B278AC23}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="authorization_code"
+              DTS:DTSID="{FFB77166-4CCE-4239-85CB-E3AAEE41C676}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="card_network"
+              DTS:DTSID="{3D315B38-F897-425F-BC7E-E486F68F6362}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="masked_pan"
+              DTS:DTSID="{1B9DF4F2-B3C5-409A-8D90-530405F20062}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CM_SQL_PaymentFlow]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{28C40F26-2FA4-4D19-B1C3-555564AE2A60}"
+      DTS:ObjectName="CM_SQL_PaymentFlow">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=PaymentFlow;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-LoadPaymentTransactions-{28C40F26-2FA4-4D19-B1C3-555564AE2A60}localhost.PaymentFlow;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8DB65FC7-C2A9-4742-92A8-2C9562DCB233}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="EtlExecutionId">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5B7993AC-75D0-4CF1-9D2D-4A146CE680E7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageName">
+      <DTS:VariableValue
+        DTS:DataType="8">LoadPaymentTransactions</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{33F1D1AE-70A3-48AC-973B-FC6ADA2BF019}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsRead">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{77F10E28-EBDE-4F68-970D-899C8D0E12EC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">sample_transactions.csv</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\01 - Start ETL execution"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{47A6FF77-B60C-4F69-BD33-0EB85E742DBF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="01 - Start ETL execution"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{28C40F26-2FA4-4D19-B1C3-555564AE2A60}"
+          SQLTask:SqlStatementSource="EXEC audit.usp_StartEtlExecution&#xA;    @PackageName = ?,&#xA;    @SourceFileName = ?;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::EtlExecutionId" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="128" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::SourceFileName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="260" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\02 - Load CSV to staging"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3DE3F476-ED05-46BA-8455-8965769831E5}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="02 - Load CSV to staging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\02 - Load CSV to staging\Add ETL execution ID"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add ETL execution ID"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\02 - Load CSV to staging\Add ETL execution ID.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\02 - Load CSV to staging\Add ETL execution ID.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\02 - Load CSV to staging\Add ETL execution ID.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\Add ETL execution ID.Outputs[Derived Column Output].Columns[EtlExecutionId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\02 - Load CSV to staging\Add ETL execution ID.Outputs[Derived Column Output].Columns[EtlExecutionId]"
+                      name="EtlExecutionId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::EtlExecutionId]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::EtlExecutionId]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\02 - Load CSV to staging\Add ETL execution ID.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\02 - Load CSV to staging\Add ETL execution ID.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\Add ETL execution ID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\02 - Load CSV to staging\Add ETL execution ID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\Add ETL execution ID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\02 - Load CSV to staging\Add ETL execution ID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Convert CSV strings to Unicode"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Inputs[Data Conversion Input].Columns[external_transaction_id]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="external_transaction_id"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[external_transaction_id]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Inputs[Data Conversion Input].Columns[terminal_code]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="terminal_code"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[terminal_code]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Inputs[Data Conversion Input].Columns[transaction_type_code]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="transaction_type_code"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[transaction_type_code]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Inputs[Data Conversion Input].Columns[status_code]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="status_code"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[status_code]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Inputs[Data Conversion Input].Columns[payment_method_code]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="payment_method_code"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[payment_method_code]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Inputs[Data Conversion Input].Columns[currency_code]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="currency_code"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[currency_code]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Inputs[Data Conversion Input].Columns[amount]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="amount"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[amount]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Inputs[Data Conversion Input].Columns[occurred_at_utc]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="occurred_at_utc"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[occurred_at_utc]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Inputs[Data Conversion Input].Columns[authorization_code]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="authorization_code"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[authorization_code]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Inputs[Data Conversion Input].Columns[card_network]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="card_network"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[card_network]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Inputs[Data Conversion Input].Columns[masked_pan]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="masked_pan"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[masked_pan]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[ExternalTransactionIdUnicode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[ExternalTransactionIdUnicode]"
+                      name="ExternalTransactionIdUnicode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[external_transaction_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[TerminalCodeUnicode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[TerminalCodeUnicode]"
+                      name="TerminalCodeUnicode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[terminal_code]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[TransactionTypeCodeUnicode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[TransactionTypeCodeUnicode]"
+                      name="TransactionTypeCodeUnicode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[transaction_type_code]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[StatusCodeUnicode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[StatusCodeUnicode]"
+                      name="StatusCodeUnicode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[status_code]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[PaymentMethodCodeUnicode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[PaymentMethodCodeUnicode]"
+                      name="PaymentMethodCodeUnicode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[payment_method_code]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[CurrencyCodeUnicode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[CurrencyCodeUnicode]"
+                      name="CurrencyCodeUnicode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[currency_code]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[AmountTextUnicode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[AmountTextUnicode]"
+                      name="AmountTextUnicode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[amount]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[OccurredAtUtcTextUnicode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[OccurredAtUtcTextUnicode]"
+                      name="OccurredAtUtcTextUnicode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[occurred_at_utc]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[AuthorizationCodeUnicode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[AuthorizationCodeUnicode]"
+                      name="AuthorizationCodeUnicode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[authorization_code]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[CardNetworkUnicode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[CardNetworkUnicode]"
+                      name="CardNetworkUnicode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[card_network]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[MaskedPanUnicode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[MaskedPanUnicode]"
+                      name="MaskedPanUnicode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[masked_pan]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\02 - Load CSV to staging\Count source rows"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Count source rows">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowsRead</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\02 - Load CSV to staging\Count source rows.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\02 - Load CSV to staging\Count source rows.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\02 - Load CSV to staging\Count source rows.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\02 - Load CSV to staging\CSV - Payment Transactions"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1045"
+              name="CSV - Payment Transactions"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CM_CSV_PaymentTransactions]"
+                  connectionManagerRefId="Package.ConnectionManagers[CM_CSV_PaymentTransactions]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[external_transaction_id]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[external_transaction_id]"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[external_transaction_id]"
+                      name="external_transaction_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[terminal_code]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[terminal_code]"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[terminal_code]"
+                      name="terminal_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[transaction_type_code]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[transaction_type_code]"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[transaction_type_code]"
+                      name="transaction_type_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[status_code]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[status_code]"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[status_code]"
+                      name="status_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[payment_method_code]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[payment_method_code]"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[payment_method_code]"
+                      name="payment_method_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[currency_code]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[currency_code]"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[currency_code]"
+                      name="currency_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[amount]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[amount]"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[amount]"
+                      name="amount"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[occurred_at_utc]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[occurred_at_utc]"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[occurred_at_utc]"
+                      name="occurred_at_utc"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[authorization_code]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[authorization_code]"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[authorization_code]"
+                      name="authorization_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[card_network]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[card_network]"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[card_network]"
+                      name="card_network"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[masked_pan]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[masked_pan]"
+                      length="50"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].Columns[masked_pan]"
+                      name="masked_pan"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[external_transaction_id]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="external_transaction_id" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[terminal_code]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="terminal_code" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[transaction_type_code]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="transaction_type_code" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[status_code]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="status_code" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[payment_method_code]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="payment_method_code" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[currency_code]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="currency_code" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[amount]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="amount" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[occurred_at_utc]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="occurred_at_utc" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[authorization_code]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="authorization_code" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[card_network]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="card_network" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output].ExternalColumns[masked_pan]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="masked_pan" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="65001"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="STG - PaymentTransactionRaw"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[staging].[PaymentTransactionRaw]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1250</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CM_SQL_PaymentFlow]"
+                  connectionManagerRefId="Package.ConnectionManagers[CM_SQL_PaymentFlow]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].Columns[EtlExecutionId]"
+                      cachedDataType="i8"
+                      cachedName="EtlExecutionId"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[EtlExecutionId]"
+                      lineageId="Package\02 - Load CSV to staging\Add ETL execution ID.Outputs[Derived Column Output].Columns[EtlExecutionId]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].Columns[ExternalTransactionIdUnicode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ExternalTransactionIdUnicode"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[ExternalTransactionId]"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[ExternalTransactionIdUnicode]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].Columns[TerminalCodeUnicode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TerminalCodeUnicode"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[TerminalCode]"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[TerminalCodeUnicode]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].Columns[TransactionTypeCodeUnicode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TransactionTypeCodeUnicode"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[TransactionTypeCode]"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[TransactionTypeCodeUnicode]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].Columns[StatusCodeUnicode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="StatusCodeUnicode"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[StatusCode]"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[StatusCodeUnicode]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].Columns[PaymentMethodCodeUnicode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="PaymentMethodCodeUnicode"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[PaymentMethodCode]"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[PaymentMethodCodeUnicode]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].Columns[CurrencyCodeUnicode]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="CurrencyCodeUnicode"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyCode]"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[CurrencyCodeUnicode]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].Columns[AmountTextUnicode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="AmountTextUnicode"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[AmountText]"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[AmountTextUnicode]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].Columns[OccurredAtUtcTextUnicode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="OccurredAtUtcTextUnicode"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[OccurredAtUtcText]"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[OccurredAtUtcTextUnicode]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].Columns[AuthorizationCodeUnicode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="AuthorizationCodeUnicode"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[AuthorizationCode]"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[AuthorizationCodeUnicode]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].Columns[CardNetworkUnicode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CardNetworkUnicode"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[CardNetwork]"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[CardNetworkUnicode]" />
+                    <inputColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].Columns[MaskedPanUnicode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="MaskedPanUnicode"
+                      externalMetadataColumnId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[MaskedPan]"
+                      lineageId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output].Columns[MaskedPanUnicode]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[StagingRowId]"
+                      dataType="i8"
+                      name="StagingRowId" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[EtlExecutionId]"
+                      dataType="i8"
+                      name="EtlExecutionId" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[ExternalTransactionId]"
+                      dataType="wstr"
+                      length="50"
+                      name="ExternalTransactionId" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[TerminalCode]"
+                      dataType="wstr"
+                      length="50"
+                      name="TerminalCode" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[TransactionTypeCode]"
+                      dataType="wstr"
+                      length="50"
+                      name="TransactionTypeCode" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[StatusCode]"
+                      dataType="wstr"
+                      length="50"
+                      name="StatusCode" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[PaymentMethodCode]"
+                      dataType="wstr"
+                      length="50"
+                      name="PaymentMethodCode" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyCode]"
+                      dataType="wstr"
+                      length="10"
+                      name="CurrencyCode" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[AmountText]"
+                      dataType="wstr"
+                      length="50"
+                      name="AmountText" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[OccurredAtUtcText]"
+                      dataType="wstr"
+                      length="50"
+                      name="OccurredAtUtcText" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[AuthorizationCode]"
+                      dataType="wstr"
+                      length="50"
+                      name="AuthorizationCode" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[CardNetwork]"
+                      dataType="wstr"
+                      length="50"
+                      name="CardNetwork" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[MaskedPan]"
+                      dataType="wstr"
+                      length="50"
+                      name="MaskedPan" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[SourceRowNumber]"
+                      dataType="i4"
+                      name="SourceRowNumber" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[ProcessingStatus]"
+                      codePage="1250"
+                      dataType="str"
+                      length="20"
+                      name="ProcessingStatus" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[LoadedAtUtc]"
+                      dataType="dbTimeStamp2"
+                      name="LoadedAtUtc"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input].ExternalColumns[ProcessedAtUtc]"
+                      dataType="dbTimeStamp2"
+                      name="ProcessedAtUtc"
+                      scale="3" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\02 - Load CSV to staging.Paths[Data Conversion Output]"
+              endId="Package\02 - Load CSV to staging\Count source rows.Inputs[Row Count Input 1]"
+              name="Data Conversion Output"
+              startId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\02 - Load CSV to staging.Paths[Derived Column Output]"
+              endId="Package\02 - Load CSV to staging\Convert CSV strings to Unicode.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\02 - Load CSV to staging\Add ETL execution ID.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\02 - Load CSV to staging.Paths[Flat File Source Output]"
+              endId="Package\02 - Load CSV to staging\Add ETL execution ID.Inputs[Derived Column Input]"
+              name="Flat File Source Output"
+              startId="Package\02 - Load CSV to staging\CSV - Payment Transactions.Outputs[Flat File Source Output]" />
+            <path
+              refId="Package\02 - Load CSV to staging.Paths[Row Count Output 1]"
+              endId="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw.Inputs[OLE DB Destination Input]"
+              name="Row Count Output 1"
+              startId="Package\02 - Load CSV to staging\Count source rows.Outputs[Row Count Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\03 - Process staging transactions"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{940ED3B9-6348-4CEE-B399-8D4B029BBD0A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="03 - Process staging transactions"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{28C40F26-2FA4-4D19-B1C3-555564AE2A60}"
+          SQLTask:SqlStatementSource="EXEC audit.usp_ProcessPaymentTransactions&#xA;    @EtlExecutionId = ?,&#xA;    @RowsRead = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::EtlExecutionId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="20"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::RowsRead"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{75923344-0E8D-4F6C-9CA0-877BE5820BAF}"
+      DTS:From="Package\01 - Start ETL execution"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\02 - Load CSV to staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{D5FC72BD-6A88-4C06-B6B2-0B2F904A6B79}"
+      DTS:From="Package\02 - Load CSV to staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\03 - Process staging transactions" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{2F08920F-0958-4FC5-BD06-79A67AE51C57}"
+      DTS:EventID="943206445"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{07F3A0DF-F6F3-41CF-8CC5-BD49B20D9EDA}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Mark ETL execution as failed"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0855C460-5130-4F4E-93AC-E7F8592A7304}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mark ETL execution as failed">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{28C40F26-2FA4-4D19-B1C3-555564AE2A60}"
+              SQLTask:SqlStatementSource="EXEC audit.usp_FailEtlExecution&#xA;    @EtlExecutionId = ?,&#xA;    @ErrorMessage = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::EtlExecutionId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="20"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="4000" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="197,42"
+          Id="Package\01 - Start ETL execution"
+          TopLeft="149,107" />
+        <NodeLayout
+          Size="201,42"
+          Id="Package\02 - Load CSV to staging"
+          TopLeft="251,277" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="247.5,149">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="104,128"
+              Start="0,0"
+              End="104,120.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,60"
+                    Point2="0,64"
+                    Point3="4,64" />
+                  <mssgle:LineSegment
+                    End="100,64" />
+                  <mssgle:CubicBezierSegment
+                    Point1="100,64"
+                    Point2="104,64"
+                    Point3="104,68" />
+                  <mssgle:LineSegment
+                    End="104,120.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="241,42"
+          Id="Package\03 - Process staging transactions"
+          TopLeft="269,375" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="351.5,319">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="38,56"
+              Start="0,0"
+              End="38,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24"
+                    Point2="0,28"
+                    Point3="4,28" />
+                  <mssgle:LineSegment
+                    End="34,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="34,28"
+                    Point2="38,28"
+                    Point3="38,32" />
+                  <mssgle:LineSegment
+                    End="38,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\02 - Load CSV to staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="220,42"
+          Id="Package\02 - Load CSV to staging\CSV - Payment Transactions"
+          TopLeft="77,68" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\02 - Load CSV to staging\Add ETL execution ID"
+          TopLeft="391,151" />
+        <EdgeLayout
+          Id="Package\02 - Load CSV to staging.Paths[Flat File Source Output]"
+          TopLeft="187,110">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="297,41"
+              Start="0,0"
+              End="297,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.5"
+                    Point2="0,20.5"
+                    Point3="4,20.5" />
+                  <mssgle:LineSegment
+                    End="293,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="293,20.5"
+                    Point2="297,20.5"
+                    Point3="297,24.5" />
+                  <mssgle:LineSegment
+                    End="297,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="234,42"
+          Id="Package\02 - Load CSV to staging\Convert CSV strings to Unicode"
+          TopLeft="629,209" />
+        <EdgeLayout
+          Id="Package\02 - Load CSV to staging.Paths[Derived Column Output]"
+          TopLeft="577,172">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="52,58"
+              Start="0,0"
+              End="44.5,58">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="22,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22,0"
+                    Point2="26,0"
+                    Point3="26,4" />
+                  <mssgle:LineSegment
+                    End="26,54" />
+                  <mssgle:CubicBezierSegment
+                    Point1="26,54"
+                    Point2="26,58"
+                    Point3="30,58" />
+                  <mssgle:LineSegment
+                    End="44.5,58" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="170,42"
+          Id="Package\02 - Load CSV to staging\Count source rows"
+          TopLeft="672,280" />
+        <EdgeLayout
+          Id="Package\02 - Load CSV to staging.Paths[Data Conversion Output]"
+          TopLeft="746,251">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11,29"
+              Start="0,0"
+              End="11,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.5"
+                    Point2="0,14.5"
+                    Point3="4,14.5" />
+                  <mssgle:LineSegment
+                    End="7,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7,14.5"
+                    Point2="11,14.5"
+                    Point3="11,18.5" />
+                  <mssgle:LineSegment
+                    End="11,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="234,42"
+          Id="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw"
+          TopLeft="558,376" />
+        <EdgeLayout
+          Id="Package\02 - Load CSV to staging.Paths[Row Count Output 1]"
+          TopLeft="757,322">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-82,54"
+              Start="0,0"
+              End="-82,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23"
+                    Point2="0,27"
+                    Point3="-4,27" />
+                  <mssgle:LineSegment
+                    End="-78,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-78,27"
+                    Point2="-82,27"
+                    Point3="-82,31" />
+                  <mssgle:LineSegment
+                    End="-82,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\02 - Load CSV to staging\STG - PaymentTransactionRaw">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="220,42"
+          Id="Package.EventHandlers[OnError]\Mark ETL execution as failed"
+          TopLeft="308,240" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
