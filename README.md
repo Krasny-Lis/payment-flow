@@ -2,7 +2,35 @@
 
 
 
-Portfolio project simulating payment transaction processing, ETL and reporting.
+PaymentFlow is an end-to-end portfolio project simulating the ingestion, validation, processing and reporting of payment transactions.
+
+
+
+The project demonstrates a complete data flow from a generated CSV file to a parameterized SSRS report.
+
+
+
+\## Architecture
+
+
+
+```mermaid
+
+flowchart TD
+
+&#x20;   A\["CSV transaction file"] --> B\["SSIS ETL package"]
+
+&#x20;   B --> C\["Staging tables"]
+
+&#x20;   C --> D\["Transaction processing procedure"]
+
+&#x20;   D --> E\["Payment data model"]
+
+&#x20;   E --> F\["Reporting views and procedure"]
+
+&#x20;   F --> G\["SSRS report"]
+
+```
 
 
 
@@ -14,29 +42,235 @@ Portfolio project simulating payment transaction processing, ETL and reporting.
 
 \- T-SQL
 
-\- SQL Server Integration Services
+\- SQL Server Integration Services (SSIS)
 
-\- SQL Server Reporting Services
+\- SQL Server Reporting Services (SSRS)
 
 \- Python
+
+\- Visual Studio and SQL Server Data Tools
 
 \- Git
 
 
 
-\## Planned scope
+\## Implemented functionality
 
 
 
-\- transactional payment database
+\### Transaction data generation
 
-\- CSV transaction generator
 
-\- SSIS import and data validation
 
-\- reporting views and stored procedures
+\- Python-based generation of sample payment transactions
 
-\- query optimization for large data volumes
+\- CSV input compatible with the SSIS package
 
-\- parameterized SSRS reports
+\- Test dataset containing 1,000 transactions
+
+
+
+\### ETL process
+
+
+
+The `LoadPaymentTransactions.dtsx` package performs the following steps:
+
+
+
+1\. Creates an ETL execution record.
+
+2\. Loads transactions from CSV into the staging table.
+
+3\. Validates and processes staged transactions.
+
+4\. Inserts valid transactions into the target data model.
+
+5\. Records processing statistics and errors.
+
+
+
+The package also contains an `OnError` event handler that updates the ETL execution audit after a failure.
+
+
+
+\### Data quality and audit
+
+
+
+\- staging statuses: `PENDING`, `IMPORTED` and `REJECTED`
+
+\- duplicate transaction detection
+
+\- duplicate records marked with `ALREADY\_IMPORTED`
+
+\- idempotent processing of previously imported files
+
+\- execution status tracking
+
+\- counters for read, inserted and rejected rows
+
+\- error message recording
+
+
+
+\### Reporting layer
+
+
+
+The reporting layer contains:
+
+
+
+\- `reporting.vw\_TransactionDetails`
+
+\- `reporting.vw\_DailyTransactionSummary`
+
+\- `reporting.usp\_GetDailyTransactionSummary`
+
+
+
+The stored procedure supports filtering by:
+
+
+
+| Parameter | Description |
+
+|---|---|
+
+| `DateFrom` | Start of the reporting period |
+
+| `DateTo` | End of the reporting period |
+
+| `MerchantId` | Merchant or all merchants |
+
+| `CountryCode` | Country or all countries |
+
+| `CurrencyCode` | Currency or all currencies |
+
+
+
+\### SSRS report
+
+
+
+`PaymentTransactionSummary.rdl` provides:
+
+
+
+\- date range filtering
+
+\- merchant selection
+
+\- country selection
+
+\- currency selection
+
+\- daily transaction counts
+
+\- transaction amounts
+
+\- transaction type and status information
+
+\- formatted dates and numeric values
+
+
+\## Screenshots
+
+\### SSIS ETL execution
+
+\![Successful SSIS ETL execution](docs/images/ssis-etl-success.png)
+
+\### SSRS payment transaction summary
+
+\![Parameterized SSRS payment transaction summary](docs/images/ssrs-payment-summary.png)
+
+
+\## Validation results
+
+
+
+| Test | Result |
+
+|---|---|
+
+| Initial CSV import | 1,000 rows read and 1,000 rows inserted |
+
+| Repeated import of the same file | 0 rows inserted and 1,000 rows rejected |
+
+| Duplicate rejection reason | `ALREADY\_IMPORTED` |
+
+| Reporting transaction total | 1,000 transactions |
+
+| SSRS parameter filtering | Completed successfully |
+
+
+
+\## Repository structure
+
+
+
+```text
+
+database/
+
+&#x20; procedures/       Stored procedures
+
+&#x20; views/            Reporting views
+
+
+
+ssis/
+
+&#x20; PaymentFlow.ETL/  SSIS project and ETL package
+
+
+
+ssrs/
+
+&#x20; PaymentFlow.Reports/  SSRS project and transaction report
+
+```
+
+
+
+\## Running the project
+
+
+
+1\. Create the `PaymentFlow` database in SQL Server.
+
+2\. Execute the database scripts in their intended order.
+
+3\. Generate or provide the transaction CSV file.
+
+4\. Configure the SQL Server and CSV connection managers in the SSIS project.
+
+5\. Run `LoadPaymentTransactions.dtsx`.
+
+6\. Verify the execution results in the audit tables.
+
+7\. Open the SSRS project.
+
+8\. Configure the `DS\_PaymentFlow` shared data source.
+
+9\. Preview `PaymentTransactionSummary.rdl`.
+
+
+
+\## Planned improvements
+
+
+
+\- performance testing with larger data volumes
+
+\- additional indexes and query optimization
+
+\- automated ETL scheduling
+
+\- deployment to the SSIS catalog
+
+\- deployment to a Report Server
+
+\- automated database and ETL tests
 
