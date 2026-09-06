@@ -1,0 +1,23 @@
+# Visual Studio
+.vs/
+bin/
+obj/
+*.user
+*.suo
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.env
+
+# Generated data
+data/input/*.csv
+!data/input/sample_transactions.csv
+data/archive/*.csv
+
+# SQL Server local files
+*.bak
+*.mdf
+*.ldf
+*.log
