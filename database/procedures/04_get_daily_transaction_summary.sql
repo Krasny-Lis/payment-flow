@@ -39,9 +39,24 @@ BEGIN
     FROM reporting.vw_DailyTransactionSummary
     WHERE TransactionDate >= @DateFrom
       AND TransactionDate <= @DateTo
-      AND (@MerchantId IS NULL OR MerchantId = @MerchantId)
-      AND (@CountryCode IS NULL OR CountryCode = @CountryCode)
-      AND (@CurrencyCode IS NULL OR CurrencyCode = @CurrencyCode)
+      AND
+        (
+            @MerchantId IS NULL
+            OR @MerchantId = 0
+            OR MerchantId = @MerchantId
+        )
+        AND
+        (
+            @CountryCode IS NULL
+            OR @CountryCode = '*'
+            OR CountryCode = @CountryCode
+        )
+        AND
+        (
+            @CurrencyCode IS NULL
+            OR @CurrencyCode = '*'
+            OR CurrencyCode = @CurrencyCode
+        )
     ORDER BY
         TransactionDate,
         MerchantName,
