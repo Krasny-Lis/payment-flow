@@ -25,6 +25,8 @@
 | Initial 100,000-row import | TBD | TBD | TBD | TBD | TBD | TBD |
 | Repeated 100,000-row import | TBD | TBD | TBD | TBD | TBD | TBD |
 | Initial 1,000,000-row import | TBD | TBD | TBD | TBD | TBD | TBD |
+| Indexed-state 100,000-row import 1 | TBD | TBD | TBD | TBD | TBD | TBD |
+| Indexed-state 100,000-row import 2 | TBD | TBD | TBD | TBD | TBD | TBD |
 
 ## Data validation
 
@@ -53,6 +55,36 @@
 - Most expensive baseline operator: TBD
 - Most expensive optimized operator: TBD
 - Logical reads before and after: TBD
+
+## Rejected index experiment
+
+| Scenario | Existing index ms | Candidate index ms | Change | Decision |
+|---|---:|---:|---:|---|
+| Full year - all filters | TBD | TBD | TBD | TBD |
+| January - all filters | TBD | TBD | TBD | TBD |
+| Full year - one merchant | TBD | TBD | TBD | TBD |
+| Full year - Poland and PLN | TBD | TBD | TBD | TBD |
+
+## Index maintenance
+
+| Measurement | Before rebuild | After rebuild | Change |
+|---|---:|---:|---:|
+| Leaf page count | TBD | TBD | TBD |
+| Fragmentation | TBD | TBD | TBD |
+| Page-space usage | TBD | TBD | TBD |
+
+| Scenario | Fragmented average ms | Rebuilt average ms | Change |
+|---|---:|---:|---:|
+| Full year - all filters | TBD | TBD | TBD |
+| January - all filters | TBD | TBD | TBD |
+| Full year - one merchant | TBD | TBD | TBD |
+| Full year - Poland and PLN | TBD | TBD | TBD |
+
+## Integrity check
+
+| Check | Result |
+|---|---|
+| `DBCC CHECKDB` | TBD |
 
 ## Conclusion
 

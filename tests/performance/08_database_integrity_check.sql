@@ -1,0 +1,6 @@
+USE master;
+GO
+
+DBCC CHECKDB(N'PaymentFlow')
+WITH NO_INFOMSGS, ALL_ERRORMSGS;
+GO
