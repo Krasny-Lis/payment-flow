@@ -1,4 +1,4 @@
-﻿# PaymentFlow
+# PaymentFlow
 
 
 
@@ -175,6 +175,17 @@ The stored procedure supports filtering by:
 - formatted dates and numeric values
 
 
+## Performance testing
+
+A reproducible large-volume test suite is available in
+[`tests/performance`](tests/performance/README.md). It covers 100,000-row
+and 1,000,000-row ETL runs, idempotency, data validation, reporting
+latency, logical reads, execution plans and a baseline-versus-indexed
+comparison.
+
+Measured results are recorded only after running the suite on a documented
+SQL Server environment.
+
 ## Screenshots
 
 ### SSIS ETL execution
@@ -262,9 +273,9 @@ ssrs/
 
 
 
-- performance testing with larger data volumes
+- publish measured large-volume benchmark results
 
-- additional indexes and query optimization
+- refine indexing based on captured execution plans
 
 - automated ETL scheduling
 
