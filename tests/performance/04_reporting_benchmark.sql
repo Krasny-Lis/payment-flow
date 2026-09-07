@@ -8,6 +8,9 @@ SET STATISTICS TIME ON;
 DECLARE @TestLabel varchar(50) = 'baseline';
 DECLARE @MeasuredRuns tinyint = 5;
 
+DROP TABLE IF EXISTS #Scenarios;
+DROP TABLE IF EXISTS #ReportResult;
+
 IF OBJECT_ID(N'audit.QueryPerformanceBenchmark', N'U') IS NULL
 BEGIN
     CREATE TABLE audit.QueryPerformanceBenchmark
@@ -195,4 +198,7 @@ ORDER BY
 
 SET STATISTICS IO OFF;
 SET STATISTICS TIME OFF;
+
+DROP TABLE IF EXISTS #ReportResult;
+DROP TABLE IF EXISTS #Scenarios;
 GO
