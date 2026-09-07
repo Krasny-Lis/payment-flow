@@ -35,7 +35,7 @@ SELECT
     schemaObject.name AS SchemaName,
     tableObject.name AS TableName,
     indexObject.name AS IndexName,
-    partitionStats.row_count AS RowCount,
+    partitionStats.row_count AS IndexRowCount,
     CAST(
         partitionStats.reserved_page_count * 8.0 / 1024
         AS decimal(18, 2)
