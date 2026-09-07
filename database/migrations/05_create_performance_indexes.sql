@@ -29,6 +29,10 @@ BEGIN
         PaymentMethodId,
         CurrencyCode,
         Amount
+    )
+    WITH
+    (
+        FILLFACTOR = 90
     );
 END;
 GO

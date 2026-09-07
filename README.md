@@ -1,190 +1,94 @@
 # PaymentFlow
 
+PaymentFlow is an end-to-end portfolio project that simulates the ingestion,
+validation, processing, auditing and reporting of payment transactions.
 
-
-PaymentFlow is an end-to-end portfolio project simulating the ingestion, validation, processing and reporting of payment transactions.
-
-
-
-The project demonstrates a complete data flow from a generated CSV file to a parameterized SSRS report.
-
-
+The project demonstrates a complete data flow from a generated CSV file to a
+parameterized SSRS report, including repeatable large-volume and performance
+tests.
 
 ## Architecture
 
-
-
 ```mermaid
-
 flowchart TD
-
     A["CSV transaction file"] --> B["SSIS ETL package"]
-
     B --> C["Staging tables"]
-
-    C --> D["Transaction processing procedure"]
-
+    C --> D["Validation and processing"]
     D --> E["Payment data model"]
-
-    E --> F["Reporting views and procedure"]
-
-    F --> G["SSRS report"]
-
+    D --> F["ETL audit and rejections"]
+    E --> G["Reporting views and procedure"]
+    G --> H["Parameterized SSRS report"]
 ```
-
-
 
 ## Technology stack
 
-
-
 - Microsoft SQL Server 2022
-
 - T-SQL
-
 - SQL Server Integration Services (SSIS)
-
 - SQL Server Reporting Services (SSRS)
-
 - Python
-
 - Visual Studio and SQL Server Data Tools
-
 - Git
-
-
 
 ## Implemented functionality
 
+### Transaction generation
 
-
-### Transaction data generation
-
-
-
-- Python-based generation of sample payment transactions
-
+- deterministic Python generator controlled by row count and random seed
 - CSV input compatible with the SSIS package
-
-- Test dataset containing 1,000 transactions
-
-
+- support for sample, 100,000-row and 1,000,000-row datasets
 
 ### ETL process
 
-
-
-The `LoadPaymentTransactions.dtsx` package performs the following steps:
-
-
+`LoadPaymentTransactions.dtsx`:
 
 1. Creates an ETL execution record.
-
-2. Loads transactions from CSV into the staging table.
-
+2. Loads the CSV file into a staging table.
 3. Validates and processes staged transactions.
-
-4. Inserts valid transactions into the target data model.
-
-5. Records processing statistics and errors.
-
-
-
-The package also contains an `OnError` event handler that updates the ETL execution audit after a failure.
-
-
+4. Inserts valid rows into the payment model.
+5. Records read, inserted and rejected row counts.
+6. Records failures through an `OnError` event handler.
 
 ### Data quality and audit
 
-
-
-- staging statuses: `PENDING`, `IMPORTED` and `REJECTED`
-
-- duplicate transaction detection
-
-- duplicate records marked with `ALREADY_IMPORTED`
-
+- staging states: `PENDING`, `IMPORTED` and `REJECTED`
+- duplicate detection using the external transaction identifier
+- duplicate rejection code `ALREADY_IMPORTED`
 - idempotent processing of previously imported files
-
-- execution status tracking
-
-- counters for read, inserted and rejected rows
-
-- error message recording
-
-
+- ETL execution status, duration, counters and error tracking
+- transaction status history
 
 ### Reporting layer
 
-
-
 The reporting layer contains:
 
-
-
 - `reporting.vw_TransactionDetails`
-
 - `reporting.vw_DailyTransactionSummary`
-
 - `reporting.usp_GetDailyTransactionSummary`
 
+The report can be filtered by date range, merchant, country and currency.
+`PaymentTransactionSummary.rdl` displays daily counts, amounts, transaction
+types and statuses.
 
+## Measured large-volume results
 
-The stored procedure supports filtering by:
+The test suite was executed on SQL Server 2022 Developer Edition with a final
+dataset of 1,301,000 transactions.
 
+- 1,000,000-row CSV generation: 12.516 s
+- 1,000,000-row SSIS import: 38.091 s and 26,252.92 rows/s
+- final data-quality validation: all six checks passed
+- duplicate import: all duplicate rows rejected with `ALREADY_IMPORTED`
+- database integrity check: completed without reported errors
+- reporting indexes and execution plans: measured before and after changes
+- rejected index experiment: documented rather than hidden
+- index fragmentation: reduced from 98.74% to 0.13% by targeted maintenance
 
-
-| Parameter | Description |
-
-|---|---|
-
-| `DateFrom` | Start of the reporting period |
-
-| `DateTo` | End of the reporting period |
-
-| `MerchantId` | Merchant or all merchants |
-
-| `CountryCode` | Country or all countries |
-
-| `CurrencyCode` | Currency or all currencies |
-
-
-
-### SSRS report
-
-
-
-`PaymentTransactionSummary.rdl` provides:
-
-
-
-- date range filtering
-
-- merchant selection
-
-- country selection
-
-- currency selection
-
-- daily transaction counts
-
-- transaction amounts
-
-- transaction type and status information
-
-- formatted dates and numeric values
-
-
-## Performance testing
-
-A reproducible large-volume test suite is available in
-[`tests/performance`](tests/performance/README.md). It covers 100,000-row
-and 1,000,000-row ETL runs, idempotency, data validation, reporting
-latency, logical reads, execution plans and a baseline-versus-indexed
-comparison.
-
-Measured results are recorded only after running the suite on a documented
-SQL Server environment.
+Detailed environment data, timings, execution-plan observations, limitations
+and conclusions are available in
+[`tests/performance/results-2026-09-08.md`](tests/performance/results-2026-09-08.md).
+The reproducible procedure is documented in
+[`tests/performance/README.md`](tests/performance/README.md).
 
 ## Screenshots
 
@@ -196,93 +100,43 @@ SQL Server environment.
 
 ![Parameterized SSRS payment transaction summary](docs/images/ssrs-payment-summary.png)
 
-
-## Validation results
-
-
-
-| Test | Result |
-
-|---|---|
-
-| Initial CSV import | 1,000 rows read and 1,000 rows inserted |
-
-| Repeated import of the same file | 0 rows inserted and 1,000 rows rejected |
-
-| Duplicate rejection reason | `ALREADY_IMPORTED` |
-
-| Reporting transaction total | 1,000 transactions |
-
-| SSRS parameter filtering | Completed successfully |
-
-
-
 ## Repository structure
 
-
-
 ```text
-
 database/
-
+  migrations/       Database schema and index migrations
   procedures/       Stored procedures
-
   views/            Reporting views
+  maintenance/      Explicit database maintenance scripts
 
-
+generator/           Synthetic payment transaction generator
 
 ssis/
-
-  PaymentFlow.ETL/  SSIS project and ETL package
-
-
+  PaymentFlow.ETL/   SSIS project and ETL package
 
 ssrs/
+  PaymentFlow.Reports/  SSRS project and parameterized report
 
-  PaymentFlow.Reports/  SSRS project and transaction report
-
+tests/
+  performance/      Reproducible volume, latency and integrity tests
 ```
-
-
 
 ## Running the project
 
-
-
 1. Create the `PaymentFlow` database in SQL Server.
-
 2. Execute the database scripts in their intended order.
-
-3. Generate or provide the transaction CSV file.
-
+3. Generate or provide a transaction CSV file.
 4. Configure the SQL Server and CSV connection managers in the SSIS project.
-
-5. Run `LoadPaymentTransactions.dtsx`.
-
-6. Verify the execution results in the audit tables.
-
-7. Open the SSRS project.
-
-8. Configure the `DS_PaymentFlow` shared data source.
-
+5. Set the `SourceFileName` package variable to the selected CSV filename.
+6. Run `LoadPaymentTransactions.dtsx`.
+7. Verify the execution in the audit tables.
+8. Configure the `DS_PaymentFlow` shared data source in the SSRS project.
 9. Preview `PaymentTransactionSummary.rdl`.
 
+## Potential extensions
 
-
-## Planned improvements
-
-
-
-- publish measured large-volume benchmark results
-
-- refine indexing based on captured execution plans
-
-- automated ETL scheduling
-
-- deployment to the SSIS catalog
-
+- automated ETL scheduling and deployment to the SSIS catalog
 - deployment to a Report Server
-
-- automated database and ETL tests
-
-
+- CI-based database and ETL tests
+- concurrent-load and cold-cache performance tests
+- automatic derivation of `SourceFileName` from the configured CSV path

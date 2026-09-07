@@ -4,6 +4,9 @@ This test suite measures the PaymentFlow ETL and reporting layer with larger
 data volumes. It also verifies that higher volume does not change the expected
 business behaviour.
 
+The completed reference run is documented in
+[`results-2026-09-08.md`](results-2026-09-08.md).
+
 ## Test scope
 
 - CSV generation for 100,000 and 1,000,000 transactions
@@ -13,6 +16,9 @@ business behaviour.
 - reporting procedure latency for four filter scenarios
 - logical reads, CPU time and execution plans
 - comparison before and after adding performance indexes
+- index usage, fragmentation and page density
+- targeted index-maintenance measurement
+- final database integrity check
 
 ## Safety and prerequisites
 
@@ -22,6 +28,8 @@ business behaviour.
 - Do not clear the SQL Server buffer cache. The benchmark deliberately uses
   one warm-up run followed by five measured runs.
 - Generated performance CSV files are ignored by Git.
+- Run index rebuilds only on a development database or during an approved
+  maintenance window.
 
 ## Test sequence
 
@@ -123,9 +131,37 @@ Run the benchmark again. The final result set compares all labels stored in
 `audit.QueryPerformanceBenchmark`.
 
 Capture the execution plan again and run `06_index_usage.sql`. The index usage
-query requires permission to read SQL Server dynamic management views.
+query requires permission to read SQL Server dynamic management views. DMV
+usage counters represent operations since the last SQL Server restart or
+counter reset; `UserUpdates` is not a modified-row count.
 
-### 8. Record the result
+### 8. Inspect fragmentation and page density
+
+Run `07_index_fragmentation.sql` after the reporting and ETL tests. Record both
+fragmentation and page-space usage. Do not rebuild every index based on a fixed
+percentage alone. Correlate the physical state with measured query performance
+and maintain only the affected index.
+
+### 9. Measure targeted index maintenance
+
+If the reporting index has both poor page density and high fragmentation:
+
+1. Run `04_reporting_benchmark.sql` with a label such as
+   `fragmented_1_3m`.
+2. Run
+   `database/maintenance/01_rebuild_reporting_index.sql`.
+3. Run `07_index_fragmentation.sql` again.
+4. Repeat the reporting benchmark with a label such as `rebuilt_1_3m`.
+
+Use the same row count for both timings. Treat reduced fragmentation, increased
+page density and reduced storage as separate outcomes from query latency.
+
+### 10. Verify database integrity
+
+Run `08_database_integrity_check.sql`. A successful run returns no consistency
+errors.
+
+### 11. Record the result
 
 Copy the measured values into `results-template.md`. Keep the baseline and
 optimized numbers from the same machine and SQL Server instance.
@@ -141,7 +177,9 @@ The large-volume test is successful when:
 - no transaction has an invalid amount or missing status history;
 - no successful ETL execution leaves rows in `PENDING` state;
 - all report scenarios return data without errors;
-- the optimized benchmark is compared with the baseline using measured values.
+- the optimized benchmark is compared with the baseline using measured values;
+- index maintenance is evaluated at the same data volume before and after;
+- `DBCC CHECKDB` returns no consistency errors.
 
 Performance results depend on CPU, memory, storage and cache state. Therefore,
 the repository should report measured values and environment details rather
