@@ -8,7 +8,7 @@ GO
 BEGIN TRY
     BEGIN TRANSACTION;
 
-    /* Akceptanci płatności */
+    /* Merchants */
 
     IF OBJECT_ID(N'payment.Merchant', N'U') IS NULL
     BEGIN
@@ -52,7 +52,7 @@ BEGIN TRY
         );
     END;
 
-    /* Terminale POS, mobilne i internetowe */
+    /* POS, mobile and e-commerce terminals */
 
     IF OBJECT_ID(N'payment.Terminal', N'U') IS NULL
     BEGIN
@@ -94,7 +94,7 @@ BEGIN TRY
         );
     END;
 
-    /* Główna tabela transakcji */
+    /* Main transaction table */
 
     IF OBJECT_ID(N'payment.PaymentTransaction', N'U') IS NULL
     BEGIN
@@ -164,7 +164,7 @@ BEGIN TRY
         );
     END;
 
-    /* Historia zmian statusów */
+    /* Transaction status history */
 
     IF OBJECT_ID(N'payment.TransactionStatusHistory', N'U') IS NULL
     BEGIN

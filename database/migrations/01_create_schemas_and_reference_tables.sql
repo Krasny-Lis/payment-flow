@@ -8,7 +8,7 @@ GO
 BEGIN TRY
     BEGIN TRANSACTION;
 
-    /* Schematy */
+    /* Schemas */
 
     IF NOT EXISTS (
         SELECT 1 FROM sys.schemas WHERE name = N'payment'
@@ -30,7 +30,7 @@ BEGIN TRY
     )
         EXEC(N'CREATE SCHEMA audit AUTHORIZATION dbo;');
 
-    /* Waluty */
+    /* Currencies */
 
     IF OBJECT_ID(N'payment.Currency', N'U') IS NULL
     BEGIN
@@ -51,7 +51,7 @@ BEGIN TRY
         );
     END;
 
-    /* Statusy transakcji */
+    /* Transaction statuses */
 
     IF OBJECT_ID(N'payment.TransactionStatus', N'U') IS NULL
     BEGIN
@@ -70,7 +70,7 @@ BEGIN TRY
         );
     END;
 
-    /* Metody płatności */
+    /* Payment methods */
 
     IF OBJECT_ID(N'payment.PaymentMethod', N'U') IS NULL
     BEGIN
@@ -90,7 +90,7 @@ BEGIN TRY
         );
     END;
 
-    /* Typy operacji */
+    /* Transaction types */
 
     IF OBJECT_ID(N'payment.TransactionType', N'U') IS NULL
     BEGIN
@@ -108,7 +108,7 @@ BEGIN TRY
         );
     END;
 
-    /* Dane słownikowe */
+    /* Reference data */
 
     INSERT INTO payment.Currency
         (CurrencyCode, CurrencyName, MinorUnit, IsActive)
@@ -215,7 +215,7 @@ BEGIN CATCH
 END CATCH;
 GO
 
-/* Kontrola wyniku */
+/* Result verification */
 
 SELECT name AS SchemaName
 FROM sys.schemas

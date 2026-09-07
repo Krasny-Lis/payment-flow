@@ -30,7 +30,7 @@ BEGIN
 END;
 GO
 
-/* Test bez trwałego dodawania rekordu */
+/* Test without persisting the inserted record */
 
 BEGIN TRANSACTION;
 

@@ -35,7 +35,7 @@ BEGIN
         IF @ActualRows <> @RowsRead
             THROW 50011, 'SSIS row count does not match staging row count.', 1;
 
-        /* Normalizacja wartości tekstowych */
+        /* Normalize text values */
 
         SELECT
             raw.StagingRowId,
@@ -88,7 +88,7 @@ BEGIN
         WHERE raw.EtlExecutionId = @EtlExecutionId
           AND raw.ProcessingStatus = 'PENDING';
 
-        /* Wykrywanie duplikatów w jednym pliku */
+        /* Detect duplicates within a single file */
 
         SELECT
             normalized.*,
@@ -100,7 +100,7 @@ BEGIN
         INTO #Source
         FROM #Normalized AS normalized;
 
-        /* Powiązanie kodów ze słownikami */
+        /* Map codes to reference data */
 
         SELECT
             source.*,
@@ -138,7 +138,7 @@ BEGIN
             ON existingTransaction.ExternalTransactionId =
                source.ParsedExternalTransactionId;
 
-        /* Określenie przyczyny odrzucenia */
+        /* Determine the rejection reason */
 
         UPDATE prepared
         SET
@@ -203,7 +203,7 @@ BEGIN
                 END
         FROM #Prepared AS prepared;
 
-        /* Zapisanie odrzuconych rekordów */
+        /* Insert rejected records */
 
         INSERT INTO audit.RejectedTransaction
         (
@@ -231,7 +231,7 @@ BEGIN
             ON prepared.StagingRowId = raw.StagingRowId
         WHERE prepared.RejectionCode IS NOT NULL;
 
-        /* Zapisanie poprawnych transakcji */
+        /* Insert valid transactions */
 
         DECLARE @InsertedTransactions TABLE
         (
@@ -306,7 +306,7 @@ BEGIN
             ON prepared.StagingRowId = raw.StagingRowId
         WHERE prepared.RejectionCode IS NULL;
 
-        /* Zakończenie audytu */
+        /* Complete the audit record */
 
         UPDATE audit.EtlExecution
         SET

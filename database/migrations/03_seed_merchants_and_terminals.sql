@@ -8,7 +8,7 @@ GO
 BEGIN TRY
     BEGIN TRANSACTION;
 
-    /* Numery od 1 do 50 */
+    /* Numbers from 1 to 50 */
 
     ;WITH MerchantNumbers AS
     (
@@ -93,7 +93,7 @@ BEGIN TRY
             )
     );
 
-    /* Trzy terminale dla każdego akceptanta */
+    /* Three terminals for each merchant */
 
     INSERT INTO payment.Terminal
     (

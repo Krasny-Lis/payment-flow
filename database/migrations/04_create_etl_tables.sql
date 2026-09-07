@@ -8,7 +8,7 @@ GO
 BEGIN TRY
     BEGIN TRANSACTION;
 
-    /* Rejestr uruchomień procesu ETL */
+    /* ETL execution log */
 
     IF OBJECT_ID(N'audit.EtlExecution', N'U') IS NULL
     BEGIN
@@ -70,7 +70,7 @@ BEGIN TRY
         );
     END;
 
-    /* Surowe dane wczytane z pliku CSV */
+    /* Raw data loaded from the CSV file */
 
     IF OBJECT_ID
     (
@@ -135,7 +135,7 @@ BEGIN TRY
         );
     END;
 
-    /* Rekordy odrzucone podczas walidacji */
+    /* Records rejected during validation */
 
     IF OBJECT_ID
     (
