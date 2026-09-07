@@ -139,7 +139,7 @@ The large-volume test is successful when:
 - the first import inserts the expected number of rows;
 - the repeated import inserts zero rows and rejects every duplicate;
 - no transaction has an invalid amount or missing status history;
-- no completed ETL execution leaves rows in `PENDING` state;
+- no successful ETL execution leaves rows in `PENDING` state;
 - all report scenarios return data without errors;
 - the optimized benchmark is compared with the baseline using measured values.
 

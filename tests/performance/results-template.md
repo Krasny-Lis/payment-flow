@@ -35,7 +35,7 @@
 | Transactions with non-positive amount | 0 | TBD | TBD |
 | Transactions without status history | 0 | TBD | TBD |
 | Successful ETL count mismatches | 0 | TBD | TBD |
-| Pending rows from completed executions | 0 | TBD | TBD |
+| Pending rows from successful executions | 0 | TBD | TBD |
 
 ## Reporting benchmark
 

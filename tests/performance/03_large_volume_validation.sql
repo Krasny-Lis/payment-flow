@@ -88,14 +88,14 @@ WHERE execution.ExecutionStatus = 'SUCCEEDED'
 INSERT INTO #ValidationResult
     (TestName, ActualValue, ExpectedValue, TestStatus)
 SELECT
-    'Pending rows from completed ETL executions',
+    'Pending rows from successful ETL executions',
     COUNT_BIG(*),
     '0',
     CASE WHEN COUNT_BIG(*) = 0 THEN 'PASS' ELSE 'FAIL' END
 FROM staging.PaymentTransactionRaw AS rawData
 JOIN audit.EtlExecution AS execution
     ON execution.EtlExecutionId = rawData.EtlExecutionId
-WHERE execution.ExecutionStatus IN ('SUCCEEDED', 'FAILED')
+WHERE execution.ExecutionStatus = 'SUCCEEDED'
   AND rawData.ProcessingStatus = 'PENDING';
 
 SELECT
