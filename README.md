@@ -1,4 +1,4 @@
-\# PaymentFlow
+﻿# PaymentFlow
 
 
 
@@ -10,7 +10,7 @@ The project demonstrates a complete data flow from a generated CSV file to a par
 
 
 
-\## Architecture
+## Architecture
 
 
 
@@ -18,59 +18,59 @@ The project demonstrates a complete data flow from a generated CSV file to a par
 
 flowchart TD
 
-&#x20;   A\["CSV transaction file"] --> B\["SSIS ETL package"]
+    A["CSV transaction file"] --> B["SSIS ETL package"]
 
-&#x20;   B --> C\["Staging tables"]
+    B --> C["Staging tables"]
 
-&#x20;   C --> D\["Transaction processing procedure"]
+    C --> D["Transaction processing procedure"]
 
-&#x20;   D --> E\["Payment data model"]
+    D --> E["Payment data model"]
 
-&#x20;   E --> F\["Reporting views and procedure"]
+    E --> F["Reporting views and procedure"]
 
-&#x20;   F --> G\["SSRS report"]
+    F --> G["SSRS report"]
 
 ```
 
 
 
-\## Technology stack
+## Technology stack
 
 
 
-\- Microsoft SQL Server 2022
+- Microsoft SQL Server 2022
 
-\- T-SQL
+- T-SQL
 
-\- SQL Server Integration Services (SSIS)
+- SQL Server Integration Services (SSIS)
 
-\- SQL Server Reporting Services (SSRS)
+- SQL Server Reporting Services (SSRS)
 
-\- Python
+- Python
 
-\- Visual Studio and SQL Server Data Tools
+- Visual Studio and SQL Server Data Tools
 
-\- Git
-
-
-
-\## Implemented functionality
+- Git
 
 
 
-\### Transaction data generation
+## Implemented functionality
 
 
 
-\- Python-based generation of sample payment transactions
-
-\- CSV input compatible with the SSIS package
-
-\- Test dataset containing 1,000 transactions
+### Transaction data generation
 
 
 
-\### ETL process
+- Python-based generation of sample payment transactions
+
+- CSV input compatible with the SSIS package
+
+- Test dataset containing 1,000 transactions
+
+
+
+### ETL process
 
 
 
@@ -78,15 +78,15 @@ The `LoadPaymentTransactions.dtsx` package performs the following steps:
 
 
 
-1\. Creates an ETL execution record.
+1. Creates an ETL execution record.
 
-2\. Loads transactions from CSV into the staging table.
+2. Loads transactions from CSV into the staging table.
 
-3\. Validates and processes staged transactions.
+3. Validates and processes staged transactions.
 
-4\. Inserts valid transactions into the target data model.
+4. Inserts valid transactions into the target data model.
 
-5\. Records processing statistics and errors.
+5. Records processing statistics and errors.
 
 
 
@@ -94,27 +94,27 @@ The package also contains an `OnError` event handler that updates the ETL execut
 
 
 
-\### Data quality and audit
+### Data quality and audit
 
 
 
-\- staging statuses: `PENDING`, `IMPORTED` and `REJECTED`
+- staging statuses: `PENDING`, `IMPORTED` and `REJECTED`
 
-\- duplicate transaction detection
+- duplicate transaction detection
 
-\- duplicate records marked with `ALREADY\_IMPORTED`
+- duplicate records marked with `ALREADY_IMPORTED`
 
-\- idempotent processing of previously imported files
+- idempotent processing of previously imported files
 
-\- execution status tracking
+- execution status tracking
 
-\- counters for read, inserted and rejected rows
+- counters for read, inserted and rejected rows
 
-\- error message recording
+- error message recording
 
 
 
-\### Reporting layer
+### Reporting layer
 
 
 
@@ -122,11 +122,11 @@ The reporting layer contains:
 
 
 
-\- `reporting.vw\_TransactionDetails`
+- `reporting.vw_TransactionDetails`
 
-\- `reporting.vw\_DailyTransactionSummary`
+- `reporting.vw_DailyTransactionSummary`
 
-\- `reporting.usp\_GetDailyTransactionSummary`
+- `reporting.usp_GetDailyTransactionSummary`
 
 
 
@@ -150,7 +150,7 @@ The stored procedure supports filtering by:
 
 
 
-\### SSRS report
+### SSRS report
 
 
 
@@ -158,35 +158,35 @@ The stored procedure supports filtering by:
 
 
 
-\- date range filtering
+- date range filtering
 
-\- merchant selection
+- merchant selection
 
-\- country selection
+- country selection
 
-\- currency selection
+- currency selection
 
-\- daily transaction counts
+- daily transaction counts
 
-\- transaction amounts
+- transaction amounts
 
-\- transaction type and status information
+- transaction type and status information
 
-\- formatted dates and numeric values
-
-
-\## Screenshots
-
-\### SSIS ETL execution
-
-\![Successful SSIS ETL execution](docs/images/ssis-etl-success.png)
-
-\### SSRS payment transaction summary
-
-\![Parameterized SSRS payment transaction summary](docs/images/ssrs-payment-summary.png)
+- formatted dates and numeric values
 
 
-\## Validation results
+## Screenshots
+
+### SSIS ETL execution
+
+![Successful SSIS ETL execution](docs/images/ssis-etl-success.png)
+
+### SSRS payment transaction summary
+
+![Parameterized SSRS payment transaction summary](docs/images/ssrs-payment-summary.png)
+
+
+## Validation results
 
 
 
@@ -198,7 +198,7 @@ The stored procedure supports filtering by:
 
 | Repeated import of the same file | 0 rows inserted and 1,000 rows rejected |
 
-| Duplicate rejection reason | `ALREADY\_IMPORTED` |
+| Duplicate rejection reason | `ALREADY_IMPORTED` |
 
 | Reporting transaction total | 1,000 transactions |
 
@@ -206,7 +206,7 @@ The stored procedure supports filtering by:
 
 
 
-\## Repository structure
+## Repository structure
 
 
 
@@ -214,63 +214,64 @@ The stored procedure supports filtering by:
 
 database/
 
-&#x20; procedures/       Stored procedures
+  procedures/       Stored procedures
 
-&#x20; views/            Reporting views
+  views/            Reporting views
 
 
 
 ssis/
 
-&#x20; PaymentFlow.ETL/  SSIS project and ETL package
+  PaymentFlow.ETL/  SSIS project and ETL package
 
 
 
 ssrs/
 
-&#x20; PaymentFlow.Reports/  SSRS project and transaction report
+  PaymentFlow.Reports/  SSRS project and transaction report
 
 ```
 
 
 
-\## Running the project
+## Running the project
 
 
 
-1\. Create the `PaymentFlow` database in SQL Server.
+1. Create the `PaymentFlow` database in SQL Server.
 
-2\. Execute the database scripts in their intended order.
+2. Execute the database scripts in their intended order.
 
-3\. Generate or provide the transaction CSV file.
+3. Generate or provide the transaction CSV file.
 
-4\. Configure the SQL Server and CSV connection managers in the SSIS project.
+4. Configure the SQL Server and CSV connection managers in the SSIS project.
 
-5\. Run `LoadPaymentTransactions.dtsx`.
+5. Run `LoadPaymentTransactions.dtsx`.
 
-6\. Verify the execution results in the audit tables.
+6. Verify the execution results in the audit tables.
 
-7\. Open the SSRS project.
+7. Open the SSRS project.
 
-8\. Configure the `DS\_PaymentFlow` shared data source.
+8. Configure the `DS_PaymentFlow` shared data source.
 
-9\. Preview `PaymentTransactionSummary.rdl`.
-
-
-
-\## Planned improvements
+9. Preview `PaymentTransactionSummary.rdl`.
 
 
 
-\- performance testing with larger data volumes
+## Planned improvements
 
-\- additional indexes and query optimization
 
-\- automated ETL scheduling
 
-\- deployment to the SSIS catalog
+- performance testing with larger data volumes
 
-\- deployment to a Report Server
+- additional indexes and query optimization
 
-\- automated database and ETL tests
+- automated ETL scheduling
+
+- deployment to the SSIS catalog
+
+- deployment to a Report Server
+
+- automated database and ETL tests
+
 
