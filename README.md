@@ -7,6 +7,17 @@ The project demonstrates a complete data flow from a generated CSV file to a
 parameterized SSRS report, including repeatable large-volume and performance
 tests.
 
+> **Project status:** complete portfolio case study. The measured implementation
+> is the reference version; the extensions listed at the end are optional.
+
+## Evidence and documentation
+
+- [Measured results and conclusions](tests/performance/results-2026-09-08.md)
+- [Reproducible performance procedure](tests/performance/README.md)
+- [Database scripts](database/)
+- [SSIS project](ssis/PaymentFlow.ETL/)
+- [SSRS project](ssrs/PaymentFlow.Reports/)
+
 ## Architecture
 
 ```mermaid
@@ -133,7 +144,7 @@ tests/
 8. Configure the `DS_PaymentFlow` shared data source in the SSRS project.
 9. Preview `PaymentTransactionSummary.rdl`.
 
-## Potential extensions
+## Optional extensions
 
 - automated ETL scheduling and deployment to the SSIS catalog
 - deployment to a Report Server
